@@ -1,0 +1,10 @@
+🧪 Desafio 1: Cadastro de Produtos (nível iniciante)
+🧵 Resumo (Live Code Style):
+Imagine que estamos construindo a base de um sistema de estoque.
+Precisamos de uma classe Produto com atributos como
+ nome, preco e quantidade. A aplicação deve permitir
+ adicionar produtos, listar todos os produtos
+ e calcular o valor total em estoque de cada um (preco * quantidade).
+
+Este desafio foca em orientação a objetos,
+ listas e entrada de dados pelo console.
