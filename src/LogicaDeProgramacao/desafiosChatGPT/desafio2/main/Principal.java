@@ -5,15 +5,17 @@ import LogicaDeProgramacao.desafiosChatGPT.desafio2.model.Livro;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) throws ParseException {
-        Livro livro = new Livro();
         Biblioteca biblioteca = new Biblioteca();
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
+        List<Livro> livrosCriados = new ArrayList<>();
 
         while(loop) {
             System.out.println("Bem vindo a biblioteca! o que deseja fazer:\n1 - Adicionar Livro no estoque\n2 - remover Livro do estoque\n3 - Listar livros no estoque\n4 - Editar livro\n 5 - Criar livro\n6 - sair do programa");
@@ -27,7 +29,7 @@ public class Principal {
                     int id = scan.nextInt();
                     scan.nextLine();
 
-                    biblioteca.adicionarLivroNaLista(id);
+                    biblioteca.adicionarLivroNaLista(id, livrosCriados);
                 break;
 
                 case 2:
@@ -36,16 +38,39 @@ public class Principal {
                     id = scan.nextInt();
                     scan.nextLine();
 
-                    biblioteca.removerLivroDoEstoque(id);
+                    biblioteca.removerLivroDoEstoque(id, livrosCriados);
                 break;
 
                 case 3:
                     System.out.println("Listar livros no estoque:");
-                    biblioteca.listarLivros();
+                    biblioteca.listarLivros(livrosCriados);
                 break;
 
                 case 4:
                     System.out.println("Editando livro:");
+                    System.out.println("Digite o id do livro:");
+                    id = scan.nextInt();
+                    scan.nextLine();
+
+                    System.out.println("Digite o nome do livro:");
+                    String nomeEdit = scan.nextLine();
+
+                    System.out.println("Digite o nome do autor:");
+                    String nomeAutorEdit = scan.nextLine();
+
+                    System.out.print("Digite a data de lançamento (dd/MM/yyyy): ");
+                    String dataTextoEdit = scan.nextLine();
+
+                    SimpleDateFormat formatoEdit = new SimpleDateFormat("dd/MM/yyyy");
+                    Date dataConvertidaEdit = formatoEdit.parse(dataTextoEdit);
+
+                    biblioteca.editarLivroEmEstoque(id, nomeEdit, nomeAutorEdit, dataConvertidaEdit);
+
+                break;
+
+                case 5:
+                    Livro livro = new Livro();
+                    System.out.println("Criando livro:");
                     System.out.println("Digite o id do livro:");
                     id = scan.nextInt();
                     scan.nextLine();
@@ -62,29 +87,10 @@ public class Principal {
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     Date dataConvertida = formato.parse(dataTexto);
 
-                    biblioteca.editarLivroEmEstoque(id, nome, nomeAutor, dataConvertida);
-
-                break;
-
-                case 5:
-                    System.out.println("Criando livro:");
-                    System.out.println("Digite o id do livro:");
-                    id = scan.nextInt();
-                    scan.nextLine();
-
-                    System.out.println("Digite o nome do livro:");
-                    nome = scan.nextLine();
-
-                    System.out.println("Digite o nome do autor:");
-                    nomeAutor = scan.nextLine();
-
-                    System.out.print("Digite a data de lançamento (dd/MM/yyyy): ");
-                    dataTexto = scan.nextLine();
-
-                    formato = new SimpleDateFormat("dd/MM/yyyy");
-                    dataConvertida = formato.parse(dataTexto);
-
-                    livro.criarLivro(nome, nomeAutor, dataConvertida);
+                    livro.setNome(nome);
+                    livro.setNomeAutor(nomeAutor);
+                    livro.setDataLancamento(dataConvertida);
+                    livrosCriados.add(livro);
                 break;
 
                 case 6:

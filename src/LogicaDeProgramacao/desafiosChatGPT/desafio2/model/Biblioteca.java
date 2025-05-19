@@ -5,9 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 public class Biblioteca {
-    private List<Livro> listaDeLivros = new ArrayList<>();
+    private List<Livro> livros = new ArrayList<>();
     private String nomeBiblioteca;
     private int quantidadeLivros;
+
 
     public Biblioteca() {}
 
@@ -16,12 +17,12 @@ public class Biblioteca {
         this.quantidadeLivros = quantidadeLivros;
     }
 
-    public List<Livro> getListaDeLivros() {
-        return listaDeLivros;
+    public List<Livro> getLivros() {
+        return livros;
     }
 
-    public void setListaDeLivros(List<Livro> listaDeLivros) {
-        this.listaDeLivros = listaDeLivros;
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
     }
 
     public String getNomeBiblioteca() {
@@ -40,6 +41,8 @@ public class Biblioteca {
         this.quantidadeLivros = quantidadeLivros;
     }
 
+
+    //métodos para locar e devolver livro
     public boolean emprestarLivro(Livro livro) {
         if(!livro.isEstaLocado()) {
             System.out.println("Livro locado com sucesso!");
@@ -62,32 +65,28 @@ public class Biblioteca {
         return livro.isEstaLocado();
     }
 
-    public List<Livro> adicionarLivroNaLista(int id) {
-        for(Livro l : listaDeLivros) {
+    public void adicionarLivroNaLista(int id, List<Livro> listaLivrosDisponiveis) {
+        for(Livro l : listaLivrosDisponiveis) {
             if(l.getId() == id) {
-                listaDeLivros.add(l);
+                listaLivrosDisponiveis.add(l);
                 System.out.println("Livro com id:" + id + " adicionado com sucesso!");
             } else {
                 System.out.println("Livro com id inexistente." + id);
 
             }
-
-            return listaDeLivros;
         }
-
-        return listaDeLivros;
     }
 
-    public List<Livro> listarLivros() {
-        for (Livro l : listaDeLivros) {
-            System.out.println(l);
+    public List<Livro> listarLivros(List<Livro> listaLivrosDisponiveis) {
+        for (Livro l : listaLivrosDisponiveis) {
+            System.out.println(l + "\n");
         }
 
-        return listaDeLivros;
+        return livros;
     }
 
     public void editarLivroEmEstoque(int id, String nome, String nomeAutor, Date dataLancamento) {
-        for(Livro l : listaDeLivros) {
+        for(Livro l : livros) {
             if(l.getId() == id) {
                 l.setNome(nome);
                 l.setNomeAutor(nomeAutor);
@@ -100,10 +99,10 @@ public class Biblioteca {
         }
     }
 
-    public void removerLivroDoEstoque(int id) {
-        for(Livro l : listaDeLivros) {
+    public void removerLivroDoEstoque(int id, List<Livro> listaLivrosDisponiveis) {
+        for(Livro l : listaLivrosDisponiveis) {
             if(l.getId() == id) {
-                listaDeLivros.remove(l);
+                listaLivrosDisponiveis.remove(l);
                 System.out.println("Livro removido do estoque com sucesso!");
             } else {
                 System.out.println("O livro com o id:" + id + " não existe em estoque.") ;

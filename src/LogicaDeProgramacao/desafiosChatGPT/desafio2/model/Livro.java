@@ -1,5 +1,4 @@
 package LogicaDeProgramacao.desafiosChatGPT.desafio2.model;
-
 import java.util.Date;
 
 public class Livro {
@@ -59,13 +58,13 @@ public class Livro {
         this.estaLocado = estaLocado;
     }
 
-    public Livro criarLivro(String nome, String nomeAutor, Date dataLancamento) {
+    public String criarLivro(String nome, String nomeAutor, Date dataLancamento) {
         Livro livro = new Livro();
         livro.setNome(nome);
         livro.setNomeAutor(nomeAutor);
         livro.setDataLancamento(dataLancamento);
 
-        return livro;
+        return "Livro criado:\n" + livro;
     }
 
     @Override
