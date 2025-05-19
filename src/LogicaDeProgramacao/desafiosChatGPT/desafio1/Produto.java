@@ -1,6 +1,7 @@
 package LogicaDeProgramacao.desafiosChatGPT.desafio1;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class Produto {
@@ -10,6 +11,7 @@ public class Produto {
     private double preco;
     private int quantidade;
     private List<Produto> listaProdutos = new ArrayList<>();
+    private List<Long> listaDeIds = new ArrayList<>();
 
     public Produto() {
     }
@@ -61,6 +63,14 @@ public class Produto {
         this.listaProdutos = listaProdutos;
     }
 
+    public List<Long> getListaDeIds() {
+        return listaDeIds;
+    }
+
+    public void setListaDeIds(List<Long> listaDeIds) {
+        this.listaDeIds = listaDeIds;
+    }
+
     public String somarValorTotalEmEstoque(int quantidade, double preco) {
         double valorTotalDoEstoque = quantidade * preco;
 
@@ -74,10 +84,12 @@ public class Produto {
 
         else {
             for (Produto produto : listaProdutos) {
+                System.out.println("------------------------------------------");
                 System.out.println("ID:" + produto.getId());
                 System.out.println("Nome:" + produto.getNome());
                 System.out.println("Preço:" + produto.getPreco());
                 System.out.println("Quantidade em estoque:" + produto.getQuantidade());
+                System.out.println("------------------------------------------");
 
             }
         }
@@ -97,34 +109,32 @@ public class Produto {
 
 
         listaProdutos.add(produto);
-        System.out.println("Produto " + produto + " adicionado com sucesso!");
+        System.out.println(produto + "\nadicionado com sucesso!");
     }
 
     public void editarProduto(Long id, String nome, double preco, int quantidade) {
         for(Produto p : listaProdutos) {
             if(p.getId() == id) {
-                listaProdutos.stream().map( produtoEditado -> {
-                    p.setNome(nome);
-                    p.setPreco(preco);
-                    p.setQuantidade(quantidade);
+                p.setNome(nome);
+                p.setPreco(preco);
+                p.setQuantidade(quantidade);
 
-                    produtoEditado.setNome(p.getNome());
-                    produtoEditado.setPreco(p.getPreco());
-                    produtoEditado.setQuantidade(p.getQuantidade());
-
-                    return "Produto editado com sucesso:" + produtoEditado;
-                });
+                System.out.println("Produto editado com sucesso!\n" + p);
             }
         }
     }
 
     public void removerLista(Long id) {
-        for (Produto p : listaProdutos) {
-            if(p.getId().equals(id)) {
-                listaProdutos.remove(p);
-            } else {
-                System.out.println("O produto não existe.");
+        try {
+            for(Produto p : listaProdutos) {
+                if(p.getId() == id) {
+                    listaProdutos.remove(p);
+                    System.out.println("Pessoa removida com sucesso!");
+                }
             }
+
+        } catch (ConcurrentModificationException e) {
+            System.out.println(("O produto está nulo:" + e.getMessage()));
         }
     }
 

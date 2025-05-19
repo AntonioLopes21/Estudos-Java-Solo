@@ -45,6 +45,7 @@ public class Main {
                     System.out.println("Editando produto...");
                     System.out.println("Digite o id do produto:");
                     id = scan.nextLong();
+                    scan.nextLine();
 
                     System.out.println("Digite o nome do produto:");
                     nome = scan.nextLine();
