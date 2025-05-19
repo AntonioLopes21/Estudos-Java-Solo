@@ -1,0 +1,17 @@
+💻 Desafio: Sistema de Biblioteca (Nível: Intermediário)
+🎯 Resumo estilo live code
+Você vai desenvolver um programa de console em Java para gerenciar o acervo de uma pequena biblioteca. O sistema deve permitir:
+
+Adicionar livros
+
+Listar todos os livros
+
+Buscar livro por título
+
+Emprestar livro (se disponível)
+
+Devolver livro
+
+Remover livro
+
+Use conceitos de POO, listas, condicionais, laços de repetição e métodos organizados.

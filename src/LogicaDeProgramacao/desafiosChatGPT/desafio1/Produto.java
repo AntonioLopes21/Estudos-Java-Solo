@@ -74,7 +74,7 @@ public class Produto {
     public String somarValorTotalEmEstoque(int quantidade, double preco) {
         double valorTotalDoEstoque = quantidade * preco;
 
-        return "O valor total do produto:" + this.nome + " de acordo com o que se possui em estoque é de: " + valorTotalDoEstoque;
+        return "O valor total do produto:" + this.nome + "\nde acordo com o que se possui em estoque é de: " + valorTotalDoEstoque;
     }
 
     public List exibirListaProduto() {
@@ -89,6 +89,7 @@ public class Produto {
                 System.out.println("Nome:" + produto.getNome());
                 System.out.println("Preço:" + produto.getPreco());
                 System.out.println("Quantidade em estoque:" + produto.getQuantidade());
+                System.out.println(somarValorTotalEmEstoque(produto.getQuantidade(), produto.getPreco()));
                 System.out.println("------------------------------------------");
 
             }
