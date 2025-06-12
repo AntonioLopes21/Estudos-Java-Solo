@@ -1,0 +1,9 @@
+🔢 1. Tabuada Formatada
+Nível: Iniciante
+Escreva um programa que peça ao usuário um número e imprima a tabuada de 1 a 10 dele, com o seguinte formato:
+
+````
+5 x 1 = 5
+5 x 2 = 10
+  ...
+````
