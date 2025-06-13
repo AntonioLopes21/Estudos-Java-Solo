@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class ContadorCaracteres {
     public static void main(String[] args) {
+        //DESCRIÇÃO DESAFIO
+
         //Nível: Iniciante
         //Peça uma frase ao usuário e exiba quantas vezes
         //cada letra aparece (ignorando espaços e
